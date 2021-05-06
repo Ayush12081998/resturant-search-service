@@ -1,14 +1,15 @@
 package com.example.resturantSearchService.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.resturantSearchService.entity.Resturant;
+import com.example.resturantSearchService.dto.FoodDto;
+import com.example.resturantSearchService.dto.ResponseBody;
 import com.example.resturantSearchService.exception.ResturantSearchServiceAppException;
 import com.example.resturantSearchService.service.ResturantSearchService;
 
@@ -21,17 +22,19 @@ public class ResturantSearchServiceController {
 	
 
 	@GetMapping("/name/{name}")
-	public List<Resturant> getResturantsByName(@PathVariable String name) throws ResturantSearchServiceAppException {
-		return searchService.findByResturantName(name);
+	public ResponseEntity<?> getResturantsByName(@PathVariable String name) throws ResturantSearchServiceAppException {
+		return new ResponseEntity<ResponseBody<FoodDto>>(new ResponseBody<FoodDto>(null,searchService.findByResturantName(name) ), HttpStatus.OK);
 	}
 	
 	@GetMapping("/location/{location}")/*location=cityName*/
-	public List<Resturant> getResturantsByLocationCode(@PathVariable String location) throws ResturantSearchServiceAppException {
-		return searchService.findByLocation(location);
+	public ResponseEntity<?> getResturantsByLocationCode(@PathVariable String location) throws ResturantSearchServiceAppException {
+		return new ResponseEntity<ResponseBody<FoodDto>>(new ResponseBody<FoodDto>(null,searchService.findByLocation(location)), HttpStatus.OK);
+				
 	}
 	
 	@GetMapping("/budget/{budgetPerPerson}")
-	public List<Resturant> getResturantsByBudget(@PathVariable double budgetPerPerson) throws ResturantSearchServiceAppException {
-		return searchService.findByBudgetPerPerson(budgetPerPerson);
+	public ResponseEntity<?> getResturantsByBudget(@PathVariable double budgetPerPerson) throws ResturantSearchServiceAppException {
+		return new ResponseEntity<ResponseBody<FoodDto>>(new ResponseBody<FoodDto>(null,searchService.findByBudgetPerPerson(budgetPerPerson)), HttpStatus.OK); 
+				
 	}
 }

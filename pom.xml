@@ -63,6 +63,9 @@
 				    <excludes>
 				    	<exclude>**/*FoodController.*</exclude>
 				    	<exclude>**/*ResturantSearchServiceController.*</exclude>
+				    	<exclude>**/*ResturantSearchServiceHandler.*</exclude>
+				    	<exclude>**/*ErrorDto.*</exclude>
+				    	<exclude>**/*ResponseBody.*</exclude>
 				        <exclude>**/*FoodDto.*</exclude>
 				        <exclude>**/*Food.*</exclude>
 				        <exclude>**/*Menue.*</exclude>
