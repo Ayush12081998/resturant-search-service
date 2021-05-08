@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,6 +29,7 @@ public class Food {
 	private String price;
 	private int qty;
 	@ManyToOne
+	@JsonIgnoreProperties("foodsInMenue")
 	private Menue menue;
 	public Long getFoodId() {
 		return foodId;
@@ -63,9 +66,6 @@ public class Food {
 	}
 	public void setQty(int qty) {
 		this.qty = qty;
-	}
-	public Menue getMenue() {
-		return menue;
 	}
 	public void setMenue(Menue menue) {
 		this.menue = menue;

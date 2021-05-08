@@ -3,6 +3,7 @@ package com.example.resturantSearchService.entity;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,9 +27,23 @@ public class Menue {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long menueId;
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
+	@JsonIgnoreProperties("menue")
 	private Resturant resturant;
 	@OneToMany(mappedBy = "menue")
-	@JsonIgnoreProperties("menue")
 	private List<Food>foodsInMenue;
+	public Long getMenueId() {
+		return menueId;
+	}
+	public void setMenueId(Long menueId) {
+		this.menueId = menueId;
+	}
+	public List<Food> getFoodsInMenue() {
+		return foodsInMenue;
+	}
+	public void setFoodsInMenue(List<Food> foodsInMenue) {
+		this.foodsInMenue = foodsInMenue;
+	}
+	
+	
 }
